@@ -14,16 +14,16 @@ const Navbar = () => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
-    <div className="flex justify-between items-center p-3">
+    <div className="flex justify-between items-center px-1 md:px-3 py-3">
       <div className="flex justify-between items-center py-4">
         {category.map((item) => (
           <div key={item.id}>
             <h3
-              className={`pb-5 uppercase text-[16px] font-[400] leading-[120%] ${
+              className={`pb-5 uppercase text-[12px] md:text-[16px] font-[400] leading-[120%] ${
                 categoryType === item.id
                   ? "text-[#5ECE7B] border-b-2 border-[#5ECE7B]"
                   : "text-[#1D1F22]"
-              } px-5`}
+              } px-1 md:px-5`}
               onClick={() => dispatch(setCategoryType(item.id))}
             >
               {item.name}
@@ -34,8 +34,7 @@ const Navbar = () => {
 
       <div className="relative">
         <svg
-          width="33"
-          height="30"
+          className="w-[25px] md:w-[33px] h-[22px] md:h-[30px]"
           viewBox="0 0 33 30"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
