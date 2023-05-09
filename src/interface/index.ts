@@ -19,4 +19,6 @@ export interface ProductProps {
   cart: IIProps[];
   categoryType: string;
   openCheckout: boolean;
+  sizeType: string;
+  colorType: string;
 }

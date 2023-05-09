@@ -3,6 +3,7 @@ import { ProductProps } from "../interface";
 import { useAppSelector } from "../redux/hooks";
 import { currencyFormatter } from "../utils/conversions";
 import { BsCart } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Category = () => {
   const { products, categoryType, currency } = useAppSelector(
@@ -27,16 +28,27 @@ const Category = () => {
 
       <div className="main-container">
         {getType().map((item, index) => (
-          <div key={item.id} className="mb-[5em]">
+          <Link
+            key={item.id}
+            className={`mb-[5em] bounce px-3 pt-3 ${
+              item.stock === 0 ? "opacity-20" : "opacity-[0.8]"
+            }`}
+            to={`/single-product/${item.id}`}
+          >
             <div className="relative">
               <img
                 src={item.image[0]}
                 alt={item.name}
-                className="h-[338px] w-full md:w-[400px]"
+                className="h-[338px] w-full"
                 onMouseEnter={() => setShowCart(index)}
               />
-              {showCart === index && (
-                <BsCart className="absolute bottom-[-7%] right-[30%] text-gray-50 bg-[#52D67A] rounded-full h-[52px] w-[52px] text-[12px] p-3 text-center font-bold" />
+              {showCart === index && item.stock > 0 && (
+                <BsCart className="absolute bottom-[-7%] right-[15%] text-gray-50 bg-[#52D67A] rounded-full h-[52px] w-[52px] text-[12px] p-3 text-center font-bold" />
+              )}
+              {item.stock === 0 && (
+                <p className="absolute top-[50%] left-[30%] text-xl uppercase font-bold text-grayt-900">
+                  Out of stock
+                </p>
               )}
             </div>
             <h3 className="text-[18px] font-[300] leading-[180%] pt-3">
@@ -45,7 +57,7 @@ const Category = () => {
             <h2 className="text-[18px] font-[500] leading-[180%]">
               {currencyFormatter(currency, item.price)}
             </h2>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

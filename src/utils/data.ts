@@ -5,7 +5,7 @@ export const productData = [
     colors: ["#D3D2D5", "#2B2B2B", "#0F6450"],
     size: ["xs", "s", "m", "l"],
     description:
-      "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge",
+      "Find stunning women's cocktail dresses and party dresses. Stand out in lace and metallic cocktail dresses and party dresses from all your favorite brands",
     id: 1229233344,
     image: [
       "https://res.cloudinary.com/chuksmbanaso/image/upload/v1683553911/media/Product_B_o9zlvq.jpg",
@@ -22,7 +22,7 @@ export const productData = [
     colors: ["#D3D2D5", "#2B2B2B", "#0F6450"],
     size: ["xs", "s", "m", "l"],
     description:
-      "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge",
+      "Find stunning women's cocktail dresses and party dresses. Stand out in lace and metallic cocktail dresses and party dresses from all your favorite brands",
     id: 23489508238,
     image: [
       "https://res.cloudinary.com/chuksmbanaso/image/upload/v1683554148/media/Product_D_jufep9.png",
@@ -39,7 +39,7 @@ export const productData = [
     colors: ["#D3D2D5", "#2B2B2B", "#0F6450"],
     size: ["xs", "s", "m", "l"],
     description:
-      "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge",
+      "Find stunning women's cocktail dresses and party dresses. Stand out in lace and metallic cocktail dresses and party dresses from all your favorite brands",
     id: 2091762453,
     image: [
       "https://res.cloudinary.com/chuksmbanaso/image/upload/v1683555149/media/Product_C_fyla8p.png",
@@ -56,7 +56,7 @@ export const productData = [
     colors: ["#D3D2D5", "#2B2B2B", "#0F6450"],
     size: ["xs", "s", "m", "l"],
     description:
-      "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge",
+      "Find stunning women's cocktail dresses and party dresses. Stand out in lace and metallic cocktail dresses and party dresses from all your favorite brands",
     id: 1092543451,
     image: [
       "https://res.cloudinary.com/chuksmbanaso/image/upload/v1683555149/media/Product_C_fyla8p.png",
@@ -73,7 +73,7 @@ export const productData = [
     colors: ["#D3D2D5", "#2B2B2B", "#0F6450"],
     size: ["xs", "s", "m", "l"],
     description:
-      "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge",
+      "Find stunning women's cocktail dresses and party dresses. Stand out in lace and metallic cocktail dresses and party dresses from all your favorite brands",
     id: 1012342567,
     image: [
       "https://res.cloudinary.com/chuksmbanaso/image/upload/v1683554148/media/Product_D_jufep9.png",
@@ -90,7 +90,7 @@ export const productData = [
     colors: ["#D3D2D5", "#2B2B2B", "#0F6450"],
     size: ["xs", "s", "m", "l"],
     description:
-      "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge",
+      "Find stunning women's cocktail dresses and party dresses. Stand out in lace and metallic cocktail dresses and party dresses from all your favorite brands",
     id: 9012341567,
     image: [
       "https://res.cloudinary.com/chuksmbanaso/image/upload/v1683555204/media/Product_A_ytgwbx.png",
@@ -107,7 +107,7 @@ export const productData = [
     colors: ["#D3D2D5", "#2B2B2B"],
     size: ["xs", "s", "m", "l"],
     description:
-      "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge",
+      "Cloud men VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chill",
     id: 827536478912,
     image: [
       "https://res.cloudinary.com/chuksmbanaso/image/upload/v1683556401/media/190116_1635795831_vsyhtg.jpg",
@@ -124,7 +124,7 @@ export const productData = [
     colors: ["#D3D2D5", "#2B2B2B"],
     size: ["xs", "s", "m", "l"],
     description:
-      "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge",
+      "Cloud men VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chill",
     id: 5142345671,
     image: [
       "https://res.cloudinary.com/chuksmbanaso/image/upload/v1683556696/media/204276_1681203146_muxgtq.jpg",
@@ -141,7 +141,7 @@ export const productData = [
     colors: ["#222", "#15A4C4", "#EA8120"],
     size: ["m", "l"],
     description:
-      "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge",
+      "Cloud men VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chill",
     id: 39402567128,
     image: [
       "https://res.cloudinary.com/chuksmbanaso/image/upload/v1683556817/media/1_uovd2n.jpg",
@@ -158,7 +158,7 @@ export const productData = [
     colors: ["#222", "#15A4C4", "#EA8120"],
     size: ["s", "m"],
     description:
-      "Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge",
+      "Cloud men VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chill",
     id: 80273651278,
     image: [
       "https://res.cloudinary.com/chuksmbanaso/image/upload/v1683556931/media/Product_D_gilhxg.png",

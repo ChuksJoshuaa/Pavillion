@@ -9,6 +9,8 @@ const initialState: ProductProps = {
   cart: [],
   categoryType: "women",
   openCheckout: false,
+  sizeType: "xs",
+  colorType: "#D3D2D5",
 };
 
 export const productSlice = createSlice({
@@ -37,6 +39,14 @@ export const productSlice = createSlice({
     setOpenCheckout: (state, action) => {
       state.openCheckout = action.payload;
     },
+
+    setSizeType: (state, action) => {
+      state.sizeType = action.payload;
+    },
+
+    setColorType: (state, action) => {
+      state.colorType = action.payload;
+    },
   },
 });
 
@@ -47,6 +57,8 @@ export const {
   setCurrency,
   setCategoryType,
   setOpenCheckout,
+  setSizeType,
+  setColorType,
 } = productSlice.actions;
 
 export default productSlice.reducer;
