@@ -142,6 +142,9 @@ export const {
   setColorType,
   setCart,
   setCartCount,
+  toggleCart,
+  clearCart,
+  removeCart,
 } = productSlice.actions;
 
 export default productSlice.reducer;
