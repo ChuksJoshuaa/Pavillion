@@ -11,6 +11,7 @@ import {
 } from "../redux/features/products/productSlice";
 import { currencyFormatter } from "../utils/conversions";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
+import { Toaster } from "../utils/Toast";
 
 const SingleProduct = () => {
   const dispatch = useAppDispatch();
@@ -47,6 +48,7 @@ const SingleProduct = () => {
   }, [id, getId]);
 
   const AddToCart = (id: number, price: number) => {
+    Toaster(`item added to cart successfully`);
     setGetId(id);
     dispatch(setOpenCheckout(true));
     const payload = {

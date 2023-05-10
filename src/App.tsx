@@ -5,6 +5,7 @@ import { useAppDispatch } from "./redux/hooks";
 import { setProducts } from "./redux/features/products/productSlice";
 import { useEffect } from "react";
 import { Navbar } from "./components";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -19,8 +20,9 @@ function App() {
   }, []);
 
   return (
-    <div style={{ maxWidth: "1500px", width: "90%", margin: '0 auto'}}>
+    <div style={{ maxWidth: "1500px", width: "90%", margin: "0 auto" }}>
       <Navbar />
+      <ToastContainer />
       <Router>
         <Routes>
           <Route path="/" element={<Products />} />

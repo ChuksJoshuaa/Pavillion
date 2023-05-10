@@ -20,6 +20,7 @@ export interface CartProps {
   category: string;
   stock: number;
   price: number;
+  count: number;
 }
 
 export interface ProductProps {
