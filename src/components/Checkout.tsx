@@ -5,6 +5,7 @@ import {
   removeCart,
   setCartCount,
   toggleCart,
+  toggleCartAmount,
 } from "../redux/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Toast } from "../utils/Toast";
@@ -14,7 +15,7 @@ import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
 const Checkout = () => {
   const cartItems = getDataFromLocalStorage();
   const dispatch = useAppDispatch();
-  const { currency } = useAppSelector((state) => state.product);
+  const { currency, cartAmount } = useAppSelector((state) => state.product);
 
   const setSize = (id: number, val: string) => {
     const payload = {
@@ -48,14 +49,15 @@ const Checkout = () => {
       };
 
       dispatch(toggleCart(payload));
+      dispatch(toggleCartAmount());
     } else {
       const newId = {
         id: id,
       };
-        if (count <= 1) {
-          dispatch(removeCart(newId));
-          dispatch(setCartCount(0))
-      };
+      if (count <= 1) {
+        dispatch(removeCart(newId));
+        dispatch(setCartCount(0));
+      }
       const payload = {
         id: id,
         value: value,
@@ -63,6 +65,7 @@ const Checkout = () => {
       };
 
       dispatch(toggleCart(payload));
+      dispatch(toggleCartAmount());
     }
   };
   return (
@@ -170,6 +173,28 @@ const Checkout = () => {
             </div>
           )}
         </div>
+
+        {cartItems.length > 0 ? (
+          <>
+            <div className="flex flex-row flex-wrap justify-between items-center py-2">
+              <h3 className="text-[25px] leading-[27px] font-bold text-gray-600">
+                Total
+              </h3>
+              <h3 className="text-[25px] leading-[27px] font-bold text-gray-600">
+                {currencyFormatter(currency, cartAmount)}
+              </h3>
+            </div>
+            <div className="flex flex-row flex-wrap justify-between items-center py-5">
+              <button className="w-[140px] h-[43px] border-[1px] border-[#1D1F22] bg-[#FFFFFF] text-center text-gray-900 text-lg font-bold uppercase mb-2 sm:mb-0">
+                View bag
+              </button>
+
+              <button className="w-[140px] h-[43px] border-[1px] border-gray-50 bg-[#5ECE7B] text-center text-gray-50 text-lg font-bold uppercase">
+                Checkout
+              </button>
+            </div>
+          </>
+        ) : null}
       </div>
     </div>
   );

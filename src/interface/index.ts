@@ -36,4 +36,5 @@ export interface ProductProps {
   sizeType: string;
   colorType: string;
   cartCount: number;
+  cartAmount: number;
 }

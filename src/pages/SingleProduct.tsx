@@ -8,6 +8,7 @@ import {
   setSizeType,
   setOpenCheckout,
   setCart,
+  toggleCartAmount,
 } from "../redux/features/products/productSlice";
 import { currencyFormatter } from "../utils/conversions";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
@@ -63,6 +64,7 @@ const SingleProduct = () => {
       colorType: colorType,
     };
     dispatch(setCart(payload));
+    dispatch(toggleCartAmount());
   };
 
   return (

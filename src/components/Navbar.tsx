@@ -3,6 +3,7 @@ import {
   setCategoryType,
   setCurrency,
   setOpenCheckout,
+  toggleCartAmount,
 } from "../redux/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { category, currencyData } from "../utils/data";
@@ -17,6 +18,11 @@ const Navbar = () => {
     (state) => state.product
   );
   const [openModal, setOpenModal] = useState(false);
+
+  const openCheckoutModal = () => {
+    dispatch(setOpenCheckout(!openCheckout));
+    dispatch(toggleCartAmount());
+  };
 
   return (
     <div className="flex justify-between items-center px-1 md:px-3 py-3">
@@ -111,10 +117,7 @@ const Navbar = () => {
             <MdKeyboardArrowUp className="text-xl font-bold ml-1" />
           )}
         </div>
-        <div
-          className="relative pl-4"
-          onClick={() => dispatch(setOpenCheckout(!openCheckout))}
-        >
+        <div className="relative pl-4" onClick={openCheckoutModal}>
           <BsCart className="font-bold text-[#1D1F22] text-2xl" />
           <h3 className="absolute top-[-30%] right-[-8px] text-gray-50 bg-[#222] rounded-full h-[18px] w-[18px] text-[12px] text-center font-bold">
             {cartItems !== null &&

@@ -15,6 +15,7 @@ const initialState: ProductProps = {
   sizeType: "xs",
   colorType: "#D3D2D5",
   cartCount: 0,
+  cartAmount: 0,
 };
 
 export const productSlice = createSlice({
@@ -166,6 +167,11 @@ export const productSlice = createSlice({
       state.cart = tempCart as CartProps[];
       saveDataLocalStorage(state.cart);
     },
+
+    toggleCartAmount: (state) => {
+      let totalPrice = state.cart.reduce((sum, item) => sum + item.price, 0);
+      state.cartAmount = totalPrice;
+    },
   },
 });
 
@@ -185,6 +191,7 @@ export const {
   removeCart,
   changeSize,
   changeColor,
+  toggleCartAmount,
 } = productSlice.actions;
 
 export default productSlice.reducer;
