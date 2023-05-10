@@ -104,20 +104,27 @@ export const productSlice = createSlice({
 
     toggleCart: (state, action) => {
       const { id, value, price } = action.payload;
+      const findProduct = productData.find((item) => item.id === id);
+
       const tempCart = state.cart.map((item) => {
         if (item.id === id) {
           if (value === "inc") {
-            let newAmount = item.price + price;
-            let newCount = item.count + 1;
-            return { ...item, price: newAmount, count: newCount };
+            if (findProduct) {
+              let newCount = item.count + 1;
+              let newAmount = price + findProduct.price;
+              return { ...item, price: newAmount, count: newCount };
+            }
           }
           if (value === "dec") {
-            let newAmount = price - item.price;
-            let newCount = item.count - 1;
-            if (newCount < 1) {
-              newCount = 1;
+            if (findProduct) {
+              let newCount = item.count - 1;
+              let newAmount = price - findProduct.price;
+              if (newCount < 1) {
+                newCount = 1;
+                newAmount = findProduct.price;
+              }
+              return { ...item, price: newAmount, count: newCount };
             }
-            return { ...item, price: newAmount, count: newCount };
           }
         }
         return item;

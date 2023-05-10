@@ -16,9 +16,8 @@ import { Toaster } from "../utils/Toast";
 const SingleProduct = () => {
   const dispatch = useAppDispatch();
   const [showCart, setShowCart] = useState(false);
-  const { sizeType, colorType, currency } = useAppSelector(
-    (state) => state.product
-  );
+  const { sizeType, colorType, currency, cartCount, openCheckout } =
+    useAppSelector((state) => state.product);
   const [imageIndex, setImageIndex] = useState(0);
   const [getId, setGetId] = useState<number | null>(null);
   const { id } = useParams();
@@ -37,6 +36,7 @@ const SingleProduct = () => {
       if (cartValue !== undefined) return setShowCart(true);
       return setShowCart(false);
     }
+    return setShowCart(false);
   };
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     checkCart();
-  }, [id, getId]);
+  }, [id, getId, cartCount, openCheckout]);
 
   const AddToCart = (
     id: number,

@@ -2,8 +2,12 @@ import { CartProps } from "../interface";
 import {
   changeColor,
   changeSize,
+  removeCart,
+  setCartCount,
+  toggleCart,
 } from "../redux/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { Toast } from "../utils/Toast";
 import { currencyFormatter } from "../utils/conversions";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
@@ -27,8 +31,42 @@ const Checkout = () => {
     };
     dispatch(changeColor(payload));
   };
+
+  const toggleCartItems = (
+    id: number,
+    value: string,
+    price: number,
+    count: number
+  ) => {
+    const findProduct = cartItems.find((item: CartProps) => item.id === id);
+    if (value === "inc") {
+      if (findProduct.stock === count) return Toast("Item out of stock");
+      const payload = {
+        id: id,
+        value: value,
+        price: price,
+      };
+
+      dispatch(toggleCart(payload));
+    } else {
+      const newId = {
+        id: id,
+      };
+        if (count <= 1) {
+          dispatch(removeCart(newId));
+          dispatch(setCartCount(0))
+      };
+      const payload = {
+        id: id,
+        value: value,
+        price: price,
+      };
+
+      dispatch(toggleCart(payload));
+    }
+  };
   return (
-    <div className="relative sm:absolute right-0 sm:right-[6rem] w-full sm:w-[32rem] bg-white z-[50] mx-0 shadow-lg rounded-lg border-[1px] border-gray-100">
+    <div className="relative sm:absolute right-0 sm:right-[6rem] w-full sm:w-[32rem] bg-white z-50 mx-0 shadow-lg rounded-lg border-[1px] border-gray-100">
       <div className="p-2">
         <h3 className="font-[700] text-[16px] leading-[160%] text-[#1D1F22] py-3">
           My Bag,{" "}
@@ -37,7 +75,11 @@ const Checkout = () => {
           </span>
         </h3>
 
-        <div className="h-[30rem] overflow-y-auto pt-3">
+        <div
+          className={`${
+            cartItems.length === 0 ? "h-[6rem]" : "h-[30rem]"
+          } overflow-y-auto pt-3`}
+        >
           {cartItems.length > 0 ? (
             cartItems.map((item: CartProps, index: number) => (
               <div className="cart__item pb-5 mb-3" key={`${item.id}-${index}`}>
@@ -80,7 +122,7 @@ const Checkout = () => {
                           key={i}
                           style={{ backgroundColor: val }}
                           onClick={() => setColor(item.id, val)}
-                          className={`h-[20px] w-[20px] mr-3 text-center font-[400] leading-[18px] my-2 ${
+                          className={`h-[20px] w-[20px] mr-3 text-center font-[400] leading-[18px] my-2 sm:mt-3 ${
                             item.colorType === val
                               ? "border-[2px] border-[#1D1F]"
                               : "border-[1px] border-[#1D1F22]"
@@ -92,11 +134,21 @@ const Checkout = () => {
                 </div>
                 <div className="flex flex-row justify-start">
                   <div className="flex flex-col justify-between items-cenetr">
-                    <FiPlusSquare className="text-[30px]" />
+                    <FiPlusSquare
+                      className="text-[30px]"
+                      onClick={() =>
+                        toggleCartItems(item.id, "inc", item.price, item.count)
+                      }
+                    />
                     <h3 className="px-2 font-normal text-[20px]">
                       {item.count}
                     </h3>
-                    <FiMinusSquare className="text-[30px]" />
+                    <FiMinusSquare
+                      className="text-[30px]"
+                      onClick={() =>
+                        toggleCartItems(item.id, "dec", item.price, item.count)
+                      }
+                    />
                   </div>
                   <div
                     className="w-[75%] sm:w-[90%] mx-auto"

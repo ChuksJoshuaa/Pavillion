@@ -6,3 +6,9 @@ export const Toaster = (text: string) =>
     position: toast.POSITION.TOP_CENTER,
     className: "toast-message",
   });
+
+export const Toast = (text: string) =>
+  toast.error(text, {
+    position: toast.POSITION.TOP_CENTER,
+    className: "toast-message",
+  });
