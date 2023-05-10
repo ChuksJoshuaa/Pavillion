@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   setCategoryType,
   setCurrency,
+  setOpenCheckout,
 } from "../redux/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { category, currencyData } from "../utils/data";
@@ -12,7 +13,9 @@ import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const cartItems = getDataFromLocalStorage();
-  const { categoryType, currency } = useAppSelector((state) => state.product);
+  const { categoryType, currency, openCheckout } = useAppSelector(
+    (state) => state.product
+  );
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -108,7 +111,10 @@ const Navbar = () => {
             <MdKeyboardArrowUp className="text-xl font-bold ml-1" />
           )}
         </div>
-        <div className="relative pl-4">
+        <div
+          className="relative pl-4"
+          onClick={() => dispatch(setOpenCheckout(!openCheckout))}
+        >
           <BsCart className="font-bold text-[#1D1F22] text-2xl" />
           <h3 className="absolute top-[-30%] right-[-8px] text-gray-50 bg-[#222] rounded-full h-[18px] w-[18px] text-[12px] text-center font-bold">
             {cartItems !== null &&

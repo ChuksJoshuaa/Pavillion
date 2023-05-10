@@ -47,13 +47,20 @@ const SingleProduct = () => {
     checkCart();
   }, [id, getId]);
 
-  const AddToCart = (id: number, price: number) => {
+  const AddToCart = (
+    id: number,
+    price: number,
+    sizeType: string,
+    colorType: string
+  ) => {
     Toaster(`item added to cart successfully`);
     setGetId(id);
     dispatch(setOpenCheckout(true));
     const payload = {
       id: id,
       price: price,
+      sizeType: sizeType,
+      colorType: colorType,
     };
     dispatch(setCart(payload));
   };
@@ -143,7 +150,14 @@ const SingleProduct = () => {
         ) : (
           <div
             className="w-[175px] sm:w-[292px] h-[52px] bg-[#5ECE7B] text-center text-gray-50 cursor-pointer text-lg font-bold pt-3 mt-5 uppercase m-2"
-            onClick={() => AddToCart(findProduct()?.id, findProduct()?.price)}
+            onClick={() =>
+              AddToCart(
+                findProduct()?.id,
+                findProduct()?.price,
+                sizeType,
+                colorType
+              )
+            }
           >
             <p>Add to cart</p>
           </div>

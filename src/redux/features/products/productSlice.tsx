@@ -2,13 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ProductProps, IIProps, CartProps } from "../../../interface";
 import { productData } from "../../../utils/data";
 import { saveDataLocalStorage } from "../../../utils/getLocalStorage";
+import { getDataFromLocalStorage } from "../../../utils/getLocalStorage";
 
 const initialState: ProductProps = {
   isLoading: true,
   products: [],
   singleProduct: {} as IIProps,
   currency: "$",
-  cart: [],
+  cart: getDataFromLocalStorage(),
   categoryType: "women",
   openCheckout: false,
   sizeType: "xs",
@@ -52,7 +53,7 @@ export const productSlice = createSlice({
     },
 
     setCart: (state, action) => {
-      const { id, price } = action.payload;
+      const { id, price, sizeType, colorType } = action.payload;
       const tempItem = state.cart.find((i) => i.id === id);
       if (tempItem) {
         const tempCart = state.cart.map((cartItem) => {
@@ -79,6 +80,8 @@ export const productSlice = createSlice({
             category: findProduct.category,
             stock: findProduct.stock,
             count: count,
+            sizeType: sizeType,
+            colorType: colorType,
           };
           state.cart = [...state.cart, newItem];
           saveDataLocalStorage(state.cart);
@@ -128,6 +131,34 @@ export const productSlice = createSlice({
       state.cart = [];
       saveDataLocalStorage(state.cart);
     },
+
+    changeSize: (state, action) => {
+      const { id, size } = action.payload;
+
+      const tempCart = state.cart.map((item) => {
+        if (item.id === id) {
+          return { ...item, sizeType: size };
+        }
+        return { ...item };
+      });
+
+      state.cart = tempCart as CartProps[];
+      saveDataLocalStorage(state.cart);
+    },
+
+    changeColor: (state, action) => {
+      const { id, color } = action.payload;
+
+      const tempCart = state.cart.map((item) => {
+        if (item.id === id) {
+          return { ...item, colorType: color };
+        }
+        return { ...item };
+      });
+
+      state.cart = tempCart as CartProps[];
+      saveDataLocalStorage(state.cart);
+    },
   },
 });
 
@@ -145,6 +176,8 @@ export const {
   toggleCart,
   clearCart,
   removeCart,
+  changeSize,
+  changeColor,
 } = productSlice.actions;
 
 export default productSlice.reducer;

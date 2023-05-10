@@ -21,6 +21,8 @@ export interface CartProps {
   stock: number;
   price: number;
   count: number;
+  colorType: string;
+  sizeType: string;
 }
 
 export interface ProductProps {
