@@ -22,7 +22,7 @@ const Category = () => {
 
   return (
     <div className="p-3">
-      <h3 className="py-8 text-[42px] leading-[160%] font-medium text-center sm:text-start">
+      <h3 className="py-8 text-[28px] md:text-[42px] leading-[160%] font-medium text-center sm:text-start">
         Category name
       </h3>
 

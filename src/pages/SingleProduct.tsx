@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Link, useParams } from "react-router-dom";
+import { productData } from "../utils/data";
 import { IIProps } from "../interface";
 import {
   setColorType,
@@ -10,7 +11,7 @@ import { currencyFormatter } from "../utils/conversions";
 
 const SingleProduct = () => {
   const dispatch = useAppDispatch();
-  const { products, sizeType, colorType, currency } = useAppSelector(
+  const { sizeType, colorType, currency } = useAppSelector(
     (state) => state.product
   );
   const [imageIndex, setImageIndex] = useState(0);
@@ -18,7 +19,7 @@ const SingleProduct = () => {
 
   const findProduct = () => {
     let userId = Number(id);
-    const value = products.find((item) => item.id === userId);
+    const value = productData.find((item) => item.id === userId);
     if (value !== undefined) return value;
     return {} as IIProps;
   };
@@ -100,9 +101,15 @@ const SingleProduct = () => {
             {currencyFormatter(currency, findProduct().price)}
           </p>
         </div>
-        <div className="w-[175px] sm:w-[292px] h-[52px] bg-[#5ECE7B] text-center text-gray-50 cursor-pointer text-lg font-bold pt-3 mt-5 uppercase m-2">
-          <p>Add to cart</p>
-        </div>
+        {findProduct().stock === 0 ? (
+          <div className="text-[24px] leading-[18px] font-[700] font-bold">
+            Out of stock
+          </div>
+        ) : (
+          <div className="w-[175px] sm:w-[292px] h-[52px] bg-[#5ECE7B] text-center text-gray-50 cursor-pointer text-lg font-bold pt-3 mt-5 uppercase m-2">
+            <p>Add to cart</p>
+          </div>
+        )}
         <div className="w-[292px] py-5 pt-8 m-2">
           <p className="text-[16px] font-[400] leading-[159.96%] w-[80%] sm:w-[100%]">
             {findProduct().description}
