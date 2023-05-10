@@ -11,14 +11,30 @@ export interface IIProps {
   stock: number;
 }
 
+export interface CartProps {
+  name: string;
+  image: string[];
+  colors: string[];
+  id: number;
+  size: string[];
+  category: string;
+  stock: number;
+  price: number;
+  count: number;
+  colorType: string;
+  sizeType: string;
+}
+
 export interface ProductProps {
   isLoading: boolean;
   products: IIProps[];
   singleProduct: IIProps;
   currency: string;
-  cart: IIProps[];
+  cart: CartProps[];
   categoryType: string;
   openCheckout: boolean;
   sizeType: string;
   colorType: string;
+  cartCount: number;
+  cartAmount: number;
 }
