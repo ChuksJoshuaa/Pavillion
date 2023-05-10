@@ -2,31 +2,60 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Link, useParams } from "react-router-dom";
 import { productData } from "../utils/data";
-import { IIProps } from "../interface";
+import { CartProps, IIProps } from "../interface";
 import {
   setColorType,
   setSizeType,
+  setOpenCheckout,
+  setCart,
 } from "../redux/features/products/productSlice";
 import { currencyFormatter } from "../utils/conversions";
+import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 
 const SingleProduct = () => {
   const dispatch = useAppDispatch();
+  const [showCart, setShowCart] = useState(false);
   const { sizeType, colorType, currency } = useAppSelector(
     (state) => state.product
   );
   const [imageIndex, setImageIndex] = useState(0);
+  const [getId, setGetId] = useState<number | null>(null);
   const { id } = useParams();
+  const userId = Number(id);
+  const cartItems = getDataFromLocalStorage();
 
   const findProduct = () => {
-    let userId = Number(id);
     const value = productData.find((item) => item.id === userId);
     if (value !== undefined) return value;
     return {} as IIProps;
   };
 
+  const checkCart = () => {
+    if (cartItems !== null && cartItems !== undefined && cartItems.length > 0) {
+      const cartValue = cartItems.find((item: CartProps) => item.id === userId);
+      if (cartValue !== undefined) return setShowCart(true);
+      return setShowCart(false);
+    }
+  };
+
   useEffect(() => {
     findProduct();
   }, [id]);
+
+  useEffect(() => {
+    checkCart();
+  }, [id, getId]);
+
+  const AddToCart = (id: number, price: number) => {
+    setGetId(id);
+    dispatch(setOpenCheckout(true));
+    const payload = {
+      id: id,
+      price: price,
+    };
+    dispatch(setCart(payload));
+  };
+
   return (
     <div className="single__product pt-5">
       <div className="image-top">
@@ -105,8 +134,15 @@ const SingleProduct = () => {
           <div className="text-[24px] leading-[18px] font-[700] font-bold">
             Out of stock
           </div>
+        ) : showCart ? (
+          <div className="w-[175px] sm:w-[292px] h-[52px] bg-[#5ECE7B] text-center text-gray-50 cursor-pointer text-lg font-bold pt-3 mt-5 uppercase m-2 opacity-50">
+            <p>Item Added</p>
+          </div>
         ) : (
-          <div className="w-[175px] sm:w-[292px] h-[52px] bg-[#5ECE7B] text-center text-gray-50 cursor-pointer text-lg font-bold pt-3 mt-5 uppercase m-2">
+          <div
+            className="w-[175px] sm:w-[292px] h-[52px] bg-[#5ECE7B] text-center text-gray-50 cursor-pointer text-lg font-bold pt-3 mt-5 uppercase m-2"
+            onClick={() => AddToCart(findProduct()?.id, findProduct()?.price)}
+          >
             <p>Add to cart</p>
           </div>
         )}

@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ProductProps, IIProps } from "../../../interface";
+import { ProductProps, IIProps, CartProps } from "../../../interface";
+import { productData } from "../../../utils/data";
+import { saveDataLocalStorage } from "../../../utils/getLocalStorage";
 
 const initialState: ProductProps = {
   isLoading: true,
@@ -11,6 +13,7 @@ const initialState: ProductProps = {
   openCheckout: false,
   sizeType: "xs",
   colorType: "#D3D2D5",
+  cartCount: 0,
 };
 
 export const productSlice = createSlice({
@@ -47,6 +50,45 @@ export const productSlice = createSlice({
     setColorType: (state, action) => {
       state.colorType = action.payload;
     },
+
+    setCart: (state, action) => {
+      const { id, price } = action.payload;
+      const tempItem = state.cart.find((i) => i.id === id);
+      if (tempItem) {
+        const tempCart = state.cart.map((cartItem) => {
+          if (cartItem.id === id) {
+            let newAmount = cartItem.price + price;
+            return { ...cartItem, price: newAmount };
+          } else {
+            return { ...cartItem };
+          }
+        });
+        state.cart = tempCart as CartProps[];
+        saveDataLocalStorage(state.cart);
+      } else {
+        const findProduct = productData.find((item) => item.id === id);
+        if (findProduct) {
+          const newItem = {
+            id: id,
+            name: findProduct.name as string,
+            price: findProduct.price,
+            colors: findProduct.colors,
+            size: findProduct.size,
+            image: findProduct.image,
+            category: findProduct.category,
+            stock: findProduct.stock,
+          };
+          state.cart = [...state.cart, newItem];
+          saveDataLocalStorage(state.cart);
+        }
+        state.cart = [...state.cart];
+        saveDataLocalStorage(state.cart);
+      }
+    },
+
+    setCartCount: (state, action) => {
+      state.cartCount = action.payload;
+    },
   },
 });
 
@@ -59,6 +101,8 @@ export const {
   setOpenCheckout,
   setSizeType,
   setColorType,
+  setCart,
+  setCartCount,
 } = productSlice.actions;
 
 export default productSlice.reducer;

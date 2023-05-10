@@ -7,9 +7,11 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { category, currencyData } from "../utils/data";
 import { BsCart } from "react-icons/bs";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
+  const cartItems = getDataFromLocalStorage();
   const { categoryType, currency } = useAppSelector((state) => state.product);
   const [openModal, setOpenModal] = useState(false);
 
@@ -109,7 +111,11 @@ const Navbar = () => {
         <div className="relative pl-4">
           <BsCart className="font-bold text-[#1D1F22] text-2xl" />
           <h3 className="absolute top-[-30%] right-[-8px] text-gray-50 bg-[#222] rounded-full h-[18px] w-[18px] text-[12px] text-center font-bold">
-            0
+            {cartItems !== null &&
+            cartItems !== undefined &&
+            cartItems.length > 0
+              ? cartItems.length
+              : 0}
           </h3>
         </div>
       </div>
