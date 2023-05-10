@@ -37,4 +37,5 @@ export interface ProductProps {
   colorType: string;
   cartCount: number;
   cartAmount: number;
+  tax: number;
 }

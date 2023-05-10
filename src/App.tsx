@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Products, SingleProduct, Error } from "./pages";
+import { Products, SingleProduct, Error, CheckoutPage } from "./pages";
 import { productData } from "./utils/data";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { setProducts } from "./redux/features/products/productSlice";
@@ -29,6 +29,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Products />} />
           <Route path="/single-product/:id" element={<SingleProduct />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </Router>

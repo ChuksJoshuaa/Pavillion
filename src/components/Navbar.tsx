@@ -43,7 +43,7 @@ const Navbar = () => {
         ))}
       </div>
 
-      <div className="relative">
+      <div className="relative" onClick={() => (window.location.href = "/")}>
         <svg
           className="w-[25px] md:w-[33px] h-[22px] md:h-[30px]"
           viewBox="0 0 33 30"
@@ -87,7 +87,10 @@ const Navbar = () => {
       <div className="flex items-center justify-betwen">
         <div
           className="flex items-center"
-          onClick={() => setOpenModal(!openModal)}
+          onClick={() => {
+            setOpenModal(!openModal);
+            dispatch(setOpenCheckout(false));
+          }}
         >
           <h3 className="text-[18px] leading-[180%] text-[#1D1F22] font-semibold">
             {currency}
