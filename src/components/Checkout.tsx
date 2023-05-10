@@ -3,7 +3,6 @@ import {
   changeColor,
   changeSize,
   removeCart,
-  setCartCount,
   toggleCart,
   toggleCartAmount,
 } from "../redux/features/products/productSlice";
@@ -56,7 +55,6 @@ const Checkout = () => {
       };
       if (count <= 1) {
         dispatch(removeCart(newId));
-        dispatch(setCartCount(0));
       }
       const payload = {
         id: id,
@@ -189,7 +187,13 @@ const Checkout = () => {
                 View bag
               </button>
 
-              <button className="w-[140px] h-[43px] border-[1px] border-gray-50 bg-[#5ECE7B] text-center text-gray-50 text-lg font-bold uppercase">
+              <button
+                className="w-[140px] h-[43px] border-[1px] border-gray-50 bg-[#5ECE7B] text-center text-gray-50 text-lg font-bold uppercase"
+                onClickCapture={() => {
+                  window.location.href = "/checkout";
+                  dispatch(toggleCartAmount());
+                }}
+              >
                 Checkout
               </button>
             </div>

@@ -16,6 +16,7 @@ const initialState: ProductProps = {
   colorType: "#D3D2D5",
   cartCount: 0,
   cartAmount: 0,
+  tax: 0,
 };
 
 export const productSlice = createSlice({
@@ -92,8 +93,9 @@ export const productSlice = createSlice({
       }
     },
 
-    setCartCount: (state, action) => {
-      state.cartCount = action.payload;
+    setCartCount: (state) => {
+      let totalCount = state.cart.reduce((sum, item) => sum + item.count, 0);
+      state.cartCount = totalCount;
     },
 
     removeCart: (state, action) => {
@@ -172,6 +174,12 @@ export const productSlice = createSlice({
       let totalPrice = state.cart.reduce((sum, item) => sum + item.price, 0);
       state.cartAmount = totalPrice;
     },
+
+    setTax: (state) => {
+      let totalPrice = state.cart.reduce((sum, item) => sum + item.price, 0);
+      totalPrice = totalPrice * 0.21
+      state.tax = totalPrice
+    },
   },
 });
 
@@ -192,6 +200,7 @@ export const {
   changeSize,
   changeColor,
   toggleCartAmount,
+  setTax,
 } = productSlice.actions;
 
 export default productSlice.reducer;
