@@ -3,6 +3,7 @@ import {
   changeColor,
   changeSize,
   removeCart,
+  setOpenCheckout,
   toggleCart,
   toggleCartAmount,
 } from "../redux/features/products/productSlice";
@@ -11,6 +12,8 @@ import { Toast } from "../utils/Toast";
 import { currencyFormatter } from "../utils/conversions";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
+import { MdClose } from "react-icons/md";
+
 const Checkout = () => {
   const cartItems = getDataFromLocalStorage();
   const dispatch = useAppDispatch();
@@ -69,12 +72,18 @@ const Checkout = () => {
   return (
     <div className="relative sm:absolute right-0 sm:right-[6rem] w-full sm:w-[32rem] bg-white z-50 mx-0 shadow-lg rounded-lg border-[1px] border-gray-100">
       <div className="p-2">
-        <h3 className="font-[700] text-[16px] leading-[160%] text-[#1D1F22] py-3">
-          My Bag,{" "}
-          <span className="font-normal">
-            {cartItems.length} {cartItems.length > 1 ? "Items" : "Item"}
-          </span>
-        </h3>
+        <div className="flex justify-between items-center pt-1 pb-3">
+          <h3 className="font-[700] text-[16px] leading-[160%] text-[#1D1F22] py-3">
+            My Bag,{" "}
+            <span className="font-normal">
+              {cartItems.length} {cartItems.length > 1 ? "Items" : "Item"}
+            </span>
+          </h3>
+          <MdClose
+            className="text-red-900 text-3xl cursor-pointer"
+            onClick={() => dispatch(setOpenCheckout(false))}
+          />
+        </div>
 
         <div
           className={`${
@@ -166,14 +175,16 @@ const Checkout = () => {
               </div>
             ))
           ) : (
-            <div>
-              <h3>No Items available in the cart</h3>
+            <div className="py-2">
+              <h3 className="text-[17px] leading-[28px] font-[400] text-red-500">
+                No Items available in the cart
+              </h3>
             </div>
           )}
         </div>
 
         {cartItems.length > 0 ? (
-          <>
+          <div className="border-t-2 border-gray-100">
             <div className="flex flex-row flex-wrap justify-between items-center py-2">
               <h3 className="text-[25px] leading-[27px] font-bold text-gray-600">
                 Total
@@ -197,7 +208,7 @@ const Checkout = () => {
                 Checkout
               </button>
             </div>
-          </>
+          </div>
         ) : null}
       </div>
     </div>
