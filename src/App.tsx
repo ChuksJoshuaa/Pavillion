@@ -1,12 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import { Products, SingleProduct, Error } from "./pages";
+import { Products, SingleProduct, Error, CheckoutPage } from "./pages";
 import { productData } from "./utils/data";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { setProducts } from "./redux/features/products/productSlice";
 import { useEffect } from "react";
-import { Navbar, Checkout } from "./components";
+import { Navbar, Checkout, Order } from "./components";
 import { ToastContainer } from "react-toastify";
-import CheckoutPage from "./pages/CheckoutPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -28,7 +27,8 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path="/" element={<Products />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/home" element={<CheckoutPage />} />
+        <Route path="/checkout" element={<Order />} />
         <Route path="/single-product/:id" element={<SingleProduct />} />
         <Route path="*" element={<Error />} />
       </Routes>

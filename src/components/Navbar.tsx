@@ -43,7 +43,10 @@ const Navbar = () => {
         ))}
       </div>
 
-      <div className="relative" onClick={() => (window.location.href = "/")}>
+      <div
+        className="relative"
+        onClick={() => (window.location.href = "/home")}
+      >
         <svg
           className="w-[25px] md:w-[33px] h-[22px] md:h-[30px]"
           viewBox="0 0 33 30"
