@@ -17,7 +17,7 @@ import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { PaystackButton } from "react-paystack";
 
-const Checkout = () => {
+const CheckoutPage = () => {
   const cartItems = getDataFromLocalStorage();
   const dispatch = useAppDispatch();
   const { currency, cartAmount, cartCount, tax } = useAppSelector(
@@ -243,4 +243,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default CheckoutPage;

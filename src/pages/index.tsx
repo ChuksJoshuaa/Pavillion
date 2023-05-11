@@ -1,6 +1,6 @@
 import Products from "./Products";
 import SingleProduct from "./SingleProduct";
 import Error from "./Error";
-import CheckoutPage from "./Checkout";
+import CheckoutPage from "./CheckoutPage";
 
 export { Products, SingleProduct, Error, CheckoutPage };
