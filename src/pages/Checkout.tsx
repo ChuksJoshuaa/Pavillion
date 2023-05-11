@@ -5,6 +5,7 @@ import {
   changeSize,
   removeCart,
   setCartCount,
+  setTax,
   toggleCart,
   toggleCartAmount,
 } from "../redux/features/products/productSlice";
@@ -13,6 +14,7 @@ import { Toast } from "../utils/Toast";
 import { currencyFormatter } from "../utils/conversions";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const cartItems = getDataFromLocalStorage();
@@ -20,6 +22,12 @@ const Checkout = () => {
   const { currency, cartAmount, cartCount, tax } = useAppSelector(
     (state) => state.product
   );
+
+  const content = () => {
+    dispatch(toggleCartAmount());
+    dispatch(setCartCount());
+    dispatch(setTax());
+  };
 
   const setSize = (id: number, val: string) => {
     const payload = {
@@ -35,6 +43,7 @@ const Checkout = () => {
       color: val,
     };
     dispatch(changeColor(payload));
+    content();
   };
 
   const toggleCartItems = (
@@ -53,8 +62,7 @@ const Checkout = () => {
       };
 
       dispatch(toggleCart(payload));
-      dispatch(toggleCartAmount());
-      dispatch(setCartCount());
+      content();
     } else {
       const newId = {
         id: id,
@@ -69,17 +77,26 @@ const Checkout = () => {
       };
 
       dispatch(toggleCart(payload));
-      dispatch(toggleCartAmount());
-      dispatch(setCartCount());
+      content();
     }
   };
 
   useEffect(() => {
-    dispatch(toggleCartAmount());
-    dispatch(setCartCount());
+    content();
   }, []);
   return (
     <div>
+      <div className="flex items-center justify-between flex-wrap py-5">
+        <h3 className="text-[32px] leading-[40px] font-[700] uppercase">
+          Cart
+        </h3>
+        <Link
+          to="/"
+          className="w-[100px] h-[40px] text-center bg-red-400 text-white font-bold rounded-lg pt-2 cursor-pointer"
+        >
+          Go back
+        </Link>
+      </div>
       <div className="py-5">
         {cartItems.length > 0 ? (
           cartItems.map((item: CartProps, index: number) => (
@@ -167,8 +184,10 @@ const Checkout = () => {
             </div>
           ))
         ) : (
-          <div>
-            <h3>No Items available in the cart</h3>
+          <div className="py-2">
+            <h3 className="text-[24px] leading-[28px] font-[400] text-red-500">
+              No Items available in the cart
+            </h3>
           </div>
         )}
       </div>
@@ -188,6 +207,14 @@ const Checkout = () => {
           </span>
         </h3>
       </div>
+      <button
+        className={`width-[279px] h-[43px] text-center uppercase bg-[#5ECE7B] py-[8px] px-[100px] text-[14px] text-white font-bold leading-[120%] my-3 ${
+          cartItems.length === 0 ? "opeacity-50" : ""
+        }`}
+        disabled={cartItems.length === 0}
+      >
+        order
+      </button>
     </div>
   );
 };
