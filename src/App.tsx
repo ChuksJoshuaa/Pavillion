@@ -26,11 +26,10 @@ function App() {
         <Navbar />
         {openCheckout ? <Checkout /> : null}
         <ToastContainer />
-
         <Routes>
           <Route path="/" element={<Products />} />
           <Route path="/single-product/:id" element={<SingleProduct />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/order-page" element={<CheckoutPage />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </Router>

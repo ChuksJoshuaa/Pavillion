@@ -205,7 +205,7 @@ const Checkout = () => {
                 View bag
               </button>
 
-              <Link to="/checkout">
+              <Link to="/order-page">
                 <button
                   className="w-[140px] h-[43px] border-[1px] border-gray-50 bg-[#5ECE7B] text-center text-gray-50 text-lg font-bold uppercase"
                   onClickCapture={handleClick}
