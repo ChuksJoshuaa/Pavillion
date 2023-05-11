@@ -13,6 +13,7 @@ import { currencyFormatter } from "../utils/conversions";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
+import { randy } from "../utils/conversions";
 
 const Checkout = () => {
   const cartItems = getDataFromLocalStorage();
@@ -198,15 +199,16 @@ const Checkout = () => {
                 View bag
               </button>
 
-              <button
-                className="w-[140px] h-[43px] border-[1px] border-gray-50 bg-[#5ECE7B] text-center text-gray-50 text-lg font-bold uppercase"
-                onClickCapture={() => {
-                  window.location.href = "/checkout";
-                  dispatch(toggleCartAmount());
-                }}
-              >
-                Checkout
-              </button>
+              <a href={`/checkout/${randy()}`}>
+                <button
+                  className="w-[140px] h-[43px] border-[1px] border-gray-50 bg-[#5ECE7B] text-center text-gray-50 text-lg font-bold uppercase"
+                  onClickCapture={() => {
+                    dispatch(toggleCartAmount());
+                  }}
+                >
+                  Checkout
+                </button>
+              </a>
             </div>
           </div>
         ) : null}
