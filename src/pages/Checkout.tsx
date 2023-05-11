@@ -10,11 +10,12 @@ import {
   toggleCartAmount,
 } from "../redux/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { Toast } from "../utils/Toast";
+import { Toast, Toaster } from "../utils/Toast";
 import { currencyFormatter } from "../utils/conversions";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { PaystackButton } from "react-paystack";
 
 const Checkout = () => {
   const cartItems = getDataFromLocalStorage();
@@ -84,6 +85,15 @@ const Checkout = () => {
   useEffect(() => {
     content();
   }, []);
+
+  const onSuccess = (reference: any) => {
+    console.log(reference);
+    Toaster("Payment Successful");
+  };
+
+  const onClose = () => {
+    console.log("closed");
+  };
   return (
     <div>
       <div className="flex items-center justify-between flex-wrap py-5">
@@ -207,14 +217,28 @@ const Checkout = () => {
           </span>
         </h3>
       </div>
-      <button
-        className={`width-[279px] h-[43px] text-center uppercase bg-[#5ECE7B] py-[8px] px-[100px] text-[14px] text-white font-bold leading-[120%] my-3 ${
-          cartItems.length === 0 ? "opeacity-50" : ""
-        }`}
-        disabled={cartItems.length === 0}
-      >
-        order
-      </button>
+      <div>
+        {cartItems.length > 0 ? (
+          <PaystackButton
+            text="Order"
+            className="width-[279px] h-[43px] text-center uppercase bg-[#5ECE7B] py-[8px] px-[100px] text-[14px] text-white font-bold leading-[120%] my-3"
+            onSuccess={onSuccess}
+            onClose={onClose}
+            email={import.meta.env.VITE_EMAIL}
+            amount={cartAmount * 100}
+            publicKey={import.meta.env.VITE_PAYSTACK_PUBLIC_KEY}
+          />
+        ) : (
+          <button
+            className={`width-[279px] h-[43px] text-center uppercase bg-[#5ECE7B] py-[8px] px-[100px] text-[14px] text-white font-bold leading-[120%] my-3 ${
+              cartItems.length === 0 ? "opacity-50" : ""
+            }`}
+            disabled={cartItems.length === 0}
+          >
+            order
+          </button>
+        )}
+      </div>
     </div>
   );
 };
