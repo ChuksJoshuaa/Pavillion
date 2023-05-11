@@ -201,13 +201,10 @@ const Checkout = () => {
               </h3>
             </div>
             <div className="flex flex-row flex-wrap justify-between items-center py-5">
-              <Link to="/" onClickCapture={handleClick}>
-                <button className="w-[140px] h-[43px] border-[1px] border-[#1D1F22] bg-[#FFFFFF] text-center text-gray-900 text-lg font-bold uppercase mb-2 sm:mb-0">
-                  View bag
-                </button>
-              </Link>
-
-              <Link to="/page/1" onClickCapture={handleClick}>
+              <button className="w-[140px] h-[43px] border-[1px] border-[#1D1F22] bg-[#FFFFFF] text-center text-gray-900 text-lg font-bold uppercase mb-2 sm:mb-0">
+                View bag
+              </button>
+              <Link to="/checkout" onClickCapture={handleClick}>
                 <button className="w-[140px] h-[43px] border-[1px] border-gray-50 bg-[#5ECE7B] text-center text-gray-50 text-lg font-bold uppercase">
                   Checkout
                 </button>
