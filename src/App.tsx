@@ -28,8 +28,8 @@ function App() {
         <ToastContainer />
         <Routes>
           <Route path="/" element={<Products />} />
+          <Route path="/order-page/" element={<CheckoutPage />} />
           <Route path="/single-product/:id" element={<SingleProduct />} />
-          <Route path="/order-page" element={<CheckoutPage />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </Router>
