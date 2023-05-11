@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Products, SingleProduct, Error, CheckoutPage } from "./pages";
 import { productData } from "./utils/data";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
@@ -22,16 +22,16 @@ function App() {
 
   return (
     <div style={{ maxWidth: "1500px", width: "90%", margin: "0 auto" }}>
-      <Navbar />
-      {openCheckout ? <Checkout /> : null}
-      <ToastContainer />
       <Router>
-        <Routes>
-          <Route path="/" element={<Products />} />
-          <Route path="/single-product/:id" element={<SingleProduct />} />
-          <Route path="/checkout/:id" element={<CheckoutPage />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
+        <Navbar />
+        {openCheckout ? <Checkout /> : null}
+        <ToastContainer />
+        <Switch>
+          <Route path="/" exact component={Products} />
+          <Route path="/single-product/:id" exact component={SingleProduct} />
+          <Route path="/checkout" exact component={CheckoutPage} />
+          <Route path="*" exact component={Error} />
+        </Switch>
       </Router>
     </div>
   );

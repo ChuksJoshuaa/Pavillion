@@ -13,12 +13,20 @@ import { currencyFormatter } from "../utils/conversions";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
-import { randy } from "../utils/conversions";
+import { useHistory } from "react-router-dom";
 
 const Checkout = () => {
   const cartItems = getDataFromLocalStorage();
   const dispatch = useAppDispatch();
+  const history = useHistory();
+
   const { currency, cartAmount } = useAppSelector((state) => state.product);
+
+  const handleClick = () => {
+    dispatch(toggleCartAmount());
+    dispatch(setOpenCheckout(false));
+    history.push("/checkout");
+  };
 
   const setSize = (id: number, val: string) => {
     const payload = {
@@ -199,16 +207,12 @@ const Checkout = () => {
                 View bag
               </button>
 
-              <a href={`/checkout/${randy()}`}>
-                <button
-                  className="w-[140px] h-[43px] border-[1px] border-gray-50 bg-[#5ECE7B] text-center text-gray-50 text-lg font-bold uppercase"
-                  onClickCapture={() => {
-                    dispatch(toggleCartAmount());
-                  }}
-                >
-                  Checkout
-                </button>
-              </a>
+              <button
+                className="w-[140px] h-[43px] border-[1px] border-gray-50 bg-[#5ECE7B] text-center text-gray-50 text-lg font-bold uppercase"
+                onClickCapture={handleClick}
+              >
+                Checkout
+              </button>
             </div>
           </div>
         ) : null}
