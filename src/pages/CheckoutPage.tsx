@@ -15,7 +15,7 @@ import { currencyFormatter } from "../utils/conversions";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { PaystackButton } from "react-paystack";
+// import { PaystackButton } from "react-paystack";
 
 const CheckoutPage = () => {
   const cartItems = getDataFromLocalStorage();
@@ -86,14 +86,14 @@ const CheckoutPage = () => {
     content();
   }, []);
 
-  const onSuccess = (reference: any) => {
-    console.log(reference);
-    Toaster("Payment Successful");
-  };
+  // const onSuccess = (reference: any) => {
+  //   console.log(reference);
+  //   Toaster("Payment Successful");
+  // };
 
-  const onClose = () => {
-    console.log("closed");
-  };
+  // const onClose = () => {
+  //   console.log("closed");
+  // };
   return (
     <div>
       <div className="flex items-center justify-between flex-wrap py-5">
@@ -217,7 +217,7 @@ const CheckoutPage = () => {
           </span>
         </h3>
       </div>
-      <div>
+      {/* <div>
         {cartItems.length > 0 ? (
           <PaystackButton
             text="Order"
@@ -238,7 +238,7 @@ const CheckoutPage = () => {
             order
           </button>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
