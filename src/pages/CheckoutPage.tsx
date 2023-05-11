@@ -10,7 +10,7 @@ import {
   toggleCartAmount,
 } from "../redux/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { Toast, Toaster } from "../utils/Toast";
+import { Toast } from "../utils/Toast";
 import { currencyFormatter } from "../utils/conversions";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
