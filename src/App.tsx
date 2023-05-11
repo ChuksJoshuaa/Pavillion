@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Products, SingleProduct, Error } from "./pages";
 import { productData } from "./utils/data";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
@@ -6,6 +6,7 @@ import { setProducts } from "./redux/features/products/productSlice";
 import { useEffect } from "react";
 import { Navbar, Checkout } from "./components";
 import { ToastContainer } from "react-toastify";
+import CheckoutPage from "./pages/CheckoutPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -22,17 +23,15 @@ function App() {
 
   return (
     <div style={{ maxWidth: "1500px", width: "90%", margin: "0 auto" }}>
-      <Router>
-        <Navbar />
-        {openCheckout ? <Checkout /> : null}
-        <ToastContainer />
-        <Routes>
-          <Route path="/" element={<Products />} />
-          <Route path="/checkout" element={<Error />} />
-          <Route path="/single-product/:id" element={<SingleProduct />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </Router>
+      <Navbar />
+      {openCheckout ? <Checkout /> : null}
+      <ToastContainer />
+      <Routes>
+        <Route path="/" element={<Products />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/single-product/:id" element={<SingleProduct />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
     </div>
   );
 }
