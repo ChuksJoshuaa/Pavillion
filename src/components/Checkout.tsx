@@ -13,19 +13,17 @@ import { currencyFormatter } from "../utils/conversions";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const cartItems = getDataFromLocalStorage();
   const dispatch = useAppDispatch();
-  const history = useHistory();
 
   const { currency, cartAmount } = useAppSelector((state) => state.product);
 
   const handleClick = () => {
     dispatch(toggleCartAmount());
     dispatch(setOpenCheckout(false));
-    history.push("/checkout");
   };
 
   const setSize = (id: number, val: string) => {
@@ -207,12 +205,14 @@ const Checkout = () => {
                 View bag
               </button>
 
-              <button
-                className="w-[140px] h-[43px] border-[1px] border-gray-50 bg-[#5ECE7B] text-center text-gray-50 text-lg font-bold uppercase"
-                onClickCapture={handleClick}
-              >
-                Checkout
-              </button>
+              <Link to="/checkout">
+                <button
+                  className="w-[140px] h-[43px] border-[1px] border-gray-50 bg-[#5ECE7B] text-center text-gray-50 text-lg font-bold uppercase"
+                  onClickCapture={handleClick}
+                >
+                  Checkout
+                </button>
+              </Link>
             </div>
           </div>
         ) : null}
