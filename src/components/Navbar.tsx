@@ -10,6 +10,7 @@ import { category, currencyData } from "../utils/data";
 import { BsCart } from "react-icons/bs";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
+import { handleScrollToTop } from "../utils/conversions";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -20,6 +21,7 @@ const Navbar = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const openCheckoutModal = () => {
+    handleScrollToTop();
     dispatch(setOpenCheckout(!openCheckout));
     dispatch(toggleCartAmount());
   };
@@ -43,7 +45,13 @@ const Navbar = () => {
         ))}
       </div>
 
-      <div className="relative" onClick={() => (window.location.href = "/")}>
+      <div
+        className="relative"
+        onClick={() => {
+          window.location.href = "/";
+          handleScrollToTop();
+        }}
+      >
         <svg
           className="w-[25px] md:w-[33px] h-[22px] md:h-[30px]"
           viewBox="0 0 33 30"

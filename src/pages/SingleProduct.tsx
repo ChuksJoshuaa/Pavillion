@@ -10,7 +10,7 @@ import {
   setCart,
   toggleCartAmount,
 } from "../redux/features/products/productSlice";
-import { currencyFormatter } from "../utils/conversions";
+import { currencyFormatter, handleScrollToTop } from "../utils/conversions";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 import { Toaster } from "../utils/Toast";
 
@@ -54,6 +54,7 @@ const SingleProduct = () => {
     sizeType: string,
     colorType: string
   ) => {
+    handleScrollToTop();
     Toaster(`item added to cart successfully`);
     setGetId(id);
     dispatch(setOpenCheckout(true));

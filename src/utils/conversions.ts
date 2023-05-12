@@ -18,3 +18,10 @@ export const currencyFormatter = (icon: string, amount: number) => {
     return `${icon}${newValue}`;
   }
 };
+
+export const handleScrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
