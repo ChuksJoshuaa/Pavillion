@@ -9,7 +9,7 @@ import {
 } from "../redux/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Toast } from "../utils/Toast";
-import { currencyFormatter } from "../utils/conversions";
+import { currencyFormatter, handleScrollToTop } from "../utils/conversions";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
@@ -24,6 +24,7 @@ const Checkout = () => {
   const handleClick = () => {
     dispatch(toggleCartAmount());
     dispatch(setOpenCheckout(false));
+    handleScrollToTop();
   };
 
   const setSize = (id: number, val: string) => {
