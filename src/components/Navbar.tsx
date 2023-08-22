@@ -11,8 +11,10 @@ import { BsCart } from "react-icons/bs";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { getDataFromLocalStorage } from "../utils/getLocalStorage";
 import { handleScrollToTop } from "../utils/conversions";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const cartItems = getDataFromLocalStorage();
   const { categoryType, currency, openCheckout } = useAppSelector(
@@ -26,6 +28,11 @@ const Navbar = () => {
     dispatch(toggleCartAmount());
   };
 
+  const navigation = (val?: string) => {
+    dispatch(setCategoryType(val));
+    navigate("/");
+  };
+
   return (
     <div className="flex justify-between items-center px-1 md:px-3 py-3">
       <div className="flex justify-between items-center py-4">
@@ -37,7 +44,7 @@ const Navbar = () => {
                   ? "text-[#5ECE7B] border-b-2 border-[#5ECE7B]"
                   : "text-[#1D1F22]"
               } px-1 md:px-5`}
-              onClick={() => dispatch(setCategoryType(item.id))}
+              onClick={() => navigation(item?.id)}
             >
               {item.name}
             </h3>
